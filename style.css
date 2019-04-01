@@ -500,7 +500,7 @@ img{
 .main-slider {
   display: inline;
   float: left;
-  height: 600px;
+  height: 300px; 
   margin-bottom: 0;
   width: 100%;
 }
@@ -578,7 +578,7 @@ img{
   float: left;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 150px;
+  padding-top: 20px;
   width: 100%;
 }
 
@@ -2184,7 +2184,7 @@ img{
 #contact{
   display: inline;
   float: left;
-  padding: 70px 0;
+  padding: 0 0 70px 0;
   width: 100%;
 }
 
