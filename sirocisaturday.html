@@ -141,119 +141,242 @@
   </section>
   <!-- End single page header -->
   
-  <!-- Start blog archive -->
-  <section id="blog-archive">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="blog-archive-area">
-            <div class="row">
-              <div class="col-md-2"></div>
-              <div class="col-md-8">
-                <div class="blog-archive-left">
-                  <!-- Start blog news single -->
-                  <article class="blog-news-single">
-                    <div class="blog-news-img">
-                      <img src="assets/images/blog-img-1.jpg" alt="image">
-                    </div>
-                    <div class="blog-news-title">
-                      <h2>All about writing story</h2>
-                      <p>By <a class="blog-author" href="#">John Powell</a> <span class="blog-date">|18 October 2015</span></p>
-                    </div>
-                    <div class="blog-news-details blog-single-details">
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
-
-                      <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of <a href="#">text</a></p>
-                      <blockquote>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from</p>
-                        <span> - John Doe</span>
-                      </blockquote>
-                      <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
-                      <ul>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                      </ul>
-                      <ol>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                        <li>There are many variations of passages of Lorem Ipsum</li>
-                      </ol>
-                      <h1>This is H1 Title Example</h1>
-                      <h2>This is H2 Title Example</h2>
-                      <h3>This is H3 Title Example</h3>
-                      <h4>This is H4 Title Example</h4>
-                      <h5>This is H5 Title Example</h5>
-                      <h6>This is H6 Title Example</h6>
-                      <div class="blog-single-bottom">
-                        <div class="row">
-                          <div class="col-md-8">
-                            <div class="blog-single-tag">
-                              <span class="fa fa-tags"></span>
-                              <a href="#">Design,</a>
-                              <a href="#">Photoshop,</a>
-                              <a href="#">Development</a>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="blog-single-social">
-                              <a href="#"><i class="fa fa-facebook"></i></a>
-                              <a href="https://twitter.com/MokoneLtd" target="_blank"><i class="fa fa-twitter"></i></a>
-                              <a href="https://za.linkedin.com/company/mokone-media-house" target="_blank"><i class="fa fa-linkedin"></i></a>
-                              <a href="#"><i class="fa fa-google-plus"></i></a>
-                              <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                  <!-- Start blog navigation -->
-                  <div class="blog-navigation-area">
-                    <div class="blog-navigation-prev">
-                      <a href="#">
-                        <h5>All about writing story</h5>
-                        <span>Previous Post</span>
-                      </a>
-                    </div>
-                    <div class="blog-navigation-next">
-                      <a href="#">
-                        <h5>All about friends story</h5>
-                        <span>Next Post</span>
-                      </a>
-                    </div>
-                  </div>
-                  <!-- Start Comment box -->
-                  <div class="comments-box-area">
-                    <h2>Leave a Comment</h2>
-                    <p>Your email address will not be published.</p>
-                    <form action="" class="comments-form">
-                       <div class="form-group">                        
-                        <input type="text" class="form-control" placeholder="Your Name">
-                      </div>
-                      <div class="form-group">                        
-                        <input type="email" class="form-control" placeholder="Email">
-                      </div>
-                       <div class="form-group">                        
-                        <textarea placeholder="Comment" rows="3" class="form-control"></textarea>
-                      </div>
-                      <button class="comment-btn">Submit Comment</button>
-                    </form>
-                  </div>
+ <!-- Start portfolio -->
+  <section id="portfolio">
+    <div class="portfolio-area">
+        <!-- portfolio menu -->
+       <div class="portfolio-menu">
+         <ul>
+           <li class="filter" data-filter=".photography">May 2019</li>
+           <li class="filter" data-filter=".photography">June 2019</li>
+           <li class="filter" data-filter=".branding">July 2019</li>
+           <li class="filter" data-filter=".branding">August 2019</li>
+           <li class="filter" data-filter=".design">September 2019</li>
+           <li class="filter" data-filter=".development">October 2019</li>
+           <li class="filter" data-filter=".photography">November 2019</li>
+           <li class="filter" data-filter=".photography">December 2019</li>
+         </ul>
+       </div>      
+       <!-- Portfolio container -->
+       <div id="mixit-container" class="portfolio-container">
+         <div class="single-portfolio mix branding">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-1.jpg" alt="img">
+             <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-1.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
                 </div>
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix design">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-2.jpg" alt="img">
+            <div class="single-item-content">               
+              <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-2.jpg"><i class="fa fa-search-plus"></i></a>
+              <div class="portfolio-title">
+                <h4>Mobile application</h4>
+                <span>UI Design</span>
               </div>
-              <div class="col-md-2"></div>             
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>  
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix development">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-3.jpg" alt="img">
+             <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-3.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
+                </div>
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix photography">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-4.jpg" alt="img">
+             <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-4.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
+                </div>
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix branding">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-5.jpg" alt="img">
+            <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-5.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
+                </div>
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix design">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-1.jpg" alt="img">
+             <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-1.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
+                </div>
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix branding">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-2.jpg" alt="img">
+             <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-2.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
+                </div>
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix photography">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-3.jpg" alt="img">
+             <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-3.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
+                </div>
+             </div>
+           </div>
+         </div>
+          <div class="single-portfolio mix branding">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-1.jpg" alt="img">
+             <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-1.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
+                </div>
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix design">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-2.jpg" alt="img">
+            <div class="single-item-content">               
+              <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-2.jpg"><i class="fa fa-search-plus"></i></a>
+              <div class="portfolio-title">
+                <h4>Mobile application</h4>
+                <span>UI Design</span>
+              </div>
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix development">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-3.jpg" alt="img">
+             <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-3.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
+                </div>
+             </div>
+           </div>
+         </div>
+         <div class="single-portfolio mix photography">
+           <div class="single-item">
+             <img src="assets/images/portfolio/portfolio-4.jpg" alt="img">
+             <div class="single-item-content">               
+                <a class="fancybox view-icon" data-fancybox-group="gallery" href="assets/images/portfolio/portfolio-big-4.jpg"><i class="fa fa-search-plus"></i></a>
+                <div class="portfolio-title">
+                  <h4>Mobile application</h4>
+                  <span>UI Design</span>
+                </div>
+            
   </section>
-  <!-- End blog archive -->
+  <!-- End portfolio -->
+  
+<!-- Start contact section  -->
+  <section id="contact">
+     <div class="container">
+       <div class="row">
+         <div class="col-md-12">
+           <div class="title-area">
+              <h4 class="title">siRoc iSaturday LOGO</h4>
+              <span class="line"></span>
+              <p>slang and a Zulu derivative that means, we are rocking the Saturday. Mokone Media House (Pty) Ltd has created an exclusive members only mobile concept party that takes place every first Saturday of every month at a membership fee, at only R250 per person in groups of six members.</br></br></p>
+              Breakdown </br></br>
+Admin fee: R50 </br>
+2 Six packs: R200  </br>
+Plus R100 per additional six pack</br></br>
+            </div>
+
+            <p>Each group receives the following as part of the package; </br></br>
+              Galvanized Metal Party Ice Bucket & Stand filled with 72 drinks, given by the two six packs per member.</br>
+              A bottle of Ciroc Vodka courtesy of Mokone Media House (Pty) Ltd</br>
+              Exclusive V.I.P setup that follows parties and the vibe</br>
+              Plus custom designed hookah for selected groups
+
+
+
+             </br></br></p>
+         </div>
+         <div class="col-md-12">
+           <div class="cotact-area">
+             <div class="row">
+               <div class="col-md-4">
+                 <div class="contact-area-left">
+                   <h4>Terms and conditions for payments </h4>
+                   <p> 
+
+Payment confirmation required before the last day of each month. Orders for all six members in a group must be submitted and only then will groups be issued with a reference numbers to effect payment. All details will be communicated with each group admin via SMS. </br></br>
+Important Note:</br></br>
+Please use the issued reference as payment reference. </br></br>
+
+Gig guide and special announcements available on Mokone Media House (Pty) Ltd Social Media Platforms. 
+</p>
+                   
+                   <div class="footer-right contact-social">
+                     
+                    </div>                
+                 </div>
+               </div>
+               <div class="col-md-8">
+                 <div class="contact-area-right">
+                   <form action="" class="comments-form contact-form">
+                    <div class="form-group">                        
+                      <input type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">                        
+                      <input type="email" class="form-control" placeholder="Email">
+                    </div>
+                     <div class="form-group">                        
+                      <input type="text" class="form-control" placeholder="Subject">
+                    </div>
+                    <div class="form-group">                        
+                      <textarea placeholder="Comment" rows="3" class="form-control"></textarea>
+                    </div>
+                    <button class="comment-btn">Submit Comment</button>
+                  </form>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+  </section>
+  <!-- End contact section  -->
+
+
 
   <!-- Start footer -->
   <footer id="footer">
