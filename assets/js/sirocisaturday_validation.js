@@ -12,13 +12,16 @@ var theList = '[{"id":-1, "name":"",  "cell":"", "email":"", "beer":"", "extra":
     ',{"id":-4, "name":"",  "cell":"", "email":"", "beer":"", "extra":0}' +
     ',{"id":-5, "name":"",  "cell":"", "email":"", "beer":"", "extra":0}' +
     ',{"id":-6, "name":"",  "cell":"", "email":"", "beer":"", "extra":0}]';
-
-/* '[{"id":1, "name":"Potego Malatji",  "cell":"0766104380", "email":"mpotego@yahoo.com", "beer":"Heinecken" ,    "extra":0}' +     
+ /* '[{"id":1, "name":"Potego Malatji",  "cell":"0766104380", "email":"mpotego@yahoo.com", "beer":"Heinecken" ,    "extra":0}' +     
 			 ',{"id":2, "name":"Ricardo Maake",   "cell":"0766104380", "email":"Ricardo@yahoo.com", "beer":"Castle lite",   "extra":0}' +     
 			 ',{"id":3, "name":"Leeroy Maila",    "cell":"0766104380", "email":"Leeroy@yahoo.com",  "beer":" Hunters Dry",  "extra":0}' +      
 			 ',{"id":4, "name":"Modjadji Mashele","cell":"0766104380", "email":"Leeroy@yahoo.com",  "beer":"Flying Fish",   "extra":0}' +  
 			 ',{"id":5, "name":"Katlego Makham",  "cell":"0766104380", "email":"Katlego@yahoo.com", "beer":"Amstel",        "extra":0}' +         
-			 ',{"id":6, "name":"Bobhle Mailula",  "cell":"0766104380", "email":"Bobhle@yahoo.com",  "beer":"Castle Larger", "extra":0}]';  */
+			 ',{"id":6, "name":"Bobhle Mailula",  "cell":"0766104380", "email":"Bobhle@yahoo.com",  "beer":"Castle Larger", "extra":0}]';  
+
+
+*/
+/**/
 
 var jsonList = $.parseJSON(theList);
 
@@ -27,27 +30,8 @@ $(document).ready(function() {
     RefreshMemberList();
 
     LoadBearOptions();
-
-    /* 
-	$( "#btnAddAction" ).button().on( "click", function() {
 	
-		<!-- var id    = $("#modal_id");  -->
-	    var name  = $("#login-form #modal_name").val();
-	    var cell  = $("#login-form #modal_cell").val();
-	    var email = $("#login-form #modal_email").val();
-	    var beer  = $("#login-form #modal_beer").val();
-	    var extra = $("#login-form #modal_extra").val();
-		
-	   var lineItem = '<div class="blog-news-title">'
-        + '<p><span >'+ 2 + '</span>. <span>' + name + '</span> , <span>' + cell + '</span> , <span>' + email + '</span> </p>'
-        + '<p><span>' + beer + '</span> - Extra six pack : <span> ' + extra + '</span> <a style="text-align:left;">Edit</a></p>' 
-       + '</div>';
-	   $("#memberDetailsDisplay").append(lineItem);
-	   
-	 
-	
-	 
-	}); */
+	//$("#btnSubmitForm").click(SubmitApplication());
 
 });
 
@@ -87,13 +71,13 @@ function RefreshMemberList() {
 
     }
 
-    if (memberCount == 6) {
-        $("#btnSubmitForm").show();
-        $("#btnOpenModal").hide();
-    } else {
-        $("#btnSubmitForm").hide();
-        $("#btnOpenModal").show();
-    }
+         if (memberCount == 6) {
+               $("#btnSubmitForm").show();
+               $("#btnOpenModal").hide();
+           } else {
+               $("#btnSubmitForm").hide();
+               $("#btnOpenModal").show();
+           }
 }
 
 function OpenMemberDetails(id) {
@@ -269,36 +253,32 @@ function LoadBearOptions() {
     $.each(availableBeers, function(index, value) {
         $("#modal_beer").append('<option>' + value + '</option>');
     });
-
-
-
-
+	
 }
 
 
 function SubmitApplication() {
-
-    $.ajax({
-            type: 'POST',
-            url: 'process.php',
-            data: {
-                json: JSON.stringify(jsonList)
-            },
-            dataType: 'json'
-        })
-        .done(function(data) {
-
-            //TODO - Show success pop up and clear the registration form details
-            console.log('done');
-            console.log(data);
-        })
-        .fail(function(data) {
-            //TODO - Show error pop up and keep registration form details
-            console.log('fail');
-            console.log(data);
-        });
-
+	
+console.log('SubmitApplication');
+	
+var jsonString = JSON.stringify(jsonList); 
+ 
+xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+   /*  myObj = JSON.parse(this.responseText);
+    for (x in myObj) {
+      txt += myObj[x].name + "<br>";
+    } */
+    //alert( this.responseText);
+  //TODO Success
+  }else
+  {
+   //TODO Failure 
+  }
+};
+xmlhttp.open("POST", "sirocregister.php", true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlhttp.send("x=" + jsonString);
 
 }
-
-//https://stackoverflow.com/questions/8599595/send-json-data-from-javascript-to-php
