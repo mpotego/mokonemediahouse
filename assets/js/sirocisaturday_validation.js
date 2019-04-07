@@ -6,12 +6,12 @@ All I am gonna say is that code can always be better, I think.
 .....
 */
 
-var theList = '[{"id":-1, "name":"",  "cell":"", "email":"", "beer":"", "extra":0}' +
-    ',{"id":-2, "name":"",  "cell":"", "email":"", "beer":"", "extra":0}' +
-    ',{"id":-3, "name":"",  "cell":"", "email":"", "beer":"", "extra":0}' +
-    ',{"id":-4, "name":"",  "cell":"", "email":"", "beer":"", "extra":0}' +
-    ',{"id":-5, "name":"",  "cell":"", "email":"", "beer":"", "extra":0}' +
-    ',{"id":-6, "name":"",  "cell":"", "email":"", "beer":"", "extra":0}]';
+var theList = '[{"id":-1, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-2, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-3, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-4, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-5, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-6, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}]';
  /* '[{"id":1, "name":"Potego Malatji",  "cell":"0766104380", "email":"mpotego@yahoo.com", "beer":"Heinecken" ,    "extra":0}' +     
 			 ',{"id":2, "name":"Ricardo Maake",   "cell":"0766104380", "email":"Ricardo@yahoo.com", "beer":"Castle lite",   "extra":0}' +     
 			 ',{"id":3, "name":"Leeroy Maila",    "cell":"0766104380", "email":"Leeroy@yahoo.com",  "beer":" Hunters Dry",  "extra":0}' +      
@@ -20,8 +20,7 @@ var theList = '[{"id":-1, "name":"",  "cell":"", "email":"", "beer":"", "extra":
 			 ',{"id":6, "name":"Bobhle Mailula",  "cell":"0766104380", "email":"Bobhle@yahoo.com",  "beer":"Castle Larger", "extra":0}]';  
 
 
-*/
-/**/
+*/ 
 
 var jsonList = $.parseJSON(theList);
 
@@ -30,9 +29,9 @@ $(document).ready(function() {
     RefreshMemberList();
 
     LoadBearOptions();
-	
-	//$("#btnSubmitForm").click(SubmitApplication());
-
+	 
+	$("#btnOpenModalSubmitFailure").hide();
+	$("#btnOpenModalSubmitSuccess").hide();
 });
 
 function RefreshMemberList() {
@@ -47,7 +46,7 @@ function RefreshMemberList() {
     $("#login-form #modal_extra").val('');
 
     var memberCount = 0;
-
+	var isAdminSelected = false;
     for (let member in jsonList) {
         var id = jsonList[member].id;
         var name = jsonList[member].name;
@@ -55,13 +54,22 @@ function RefreshMemberList() {
         var email = jsonList[member].email;
         var beer = jsonList[member].beer;
         var extra = jsonList[member].extra;
-
+		var isadmin = jsonList[member].isadmin;
         if (id > 0) {
 
             var lineItem = '<div class="blog-news-title">' +
                 '<p><span >' + id + '</span>. <span>' + name + '</span> , <span>' + cell + '</span> , <span>' + email + '</span> </p>' +
-                '<p><span>' + beer + '</span> - Extra six pack : <span> ' + extra + '</span> ' +
-                '<a onclick=OpenMemberDetails(' + id + ') >Edit</a> <span> | </span> <a onclick=RemoveMember(' + id + ') >Remove</a></p>' +
+                '<p><span>' + beer + '</span> - Extra six pack : <span> ' + extra + '</span> ';
+			if(isadmin == "1")
+			{
+				isAdminSelected = isadmin;
+				lineItem += '<input type="checkbox"  onclick="ChangeGroupAdmin(' + id + ')" checked> Group Admin </input>'
+			}
+			else
+			{
+				lineItem += '<input type="checkbox"  onclick="ChangeGroupAdmin(' + id + ')"> Group Admin </input>'
+			}
+			lineItem += '<a onclick=OpenMemberDetails(' + id + ') >Edit</a> <span> | </span> <a onclick=RemoveMember(' + id + ') >Remove</a></p>' +
                 '</div>';
 
             $("#memberDetailsDisplay").append(lineItem);
@@ -71,13 +79,13 @@ function RefreshMemberList() {
 
     }
 
-         if (memberCount == 6) {
-               $("#btnSubmitForm").show();
-               $("#btnOpenModal").hide();
-           } else {
-               $("#btnSubmitForm").hide();
-               $("#btnOpenModal").show();
-           }
+    if (memberCount == 6 && isAdminSelected && $("#Group_Name").val().length > 4) {
+         $("#btnSubmitForm").show();
+         $("#btnOpenModal").hide();
+     } else {
+         $("#btnSubmitForm").hide();
+         $("#btnOpenModal").show();
+     }  
 }
 
 function OpenMemberDetails(id) {
@@ -258,27 +266,132 @@ function LoadBearOptions() {
 
 
 function SubmitApplication() {
-	
-console.log('SubmitApplication');
-	
+ 
+   console.log('SubmitApplication');
+
+	  if(ValidateBeforeSubmit() == false){
+		var error = "Error."
+					+ "\n" + "Make sure that your group name must be atleast 4 characters." 
+					+ "\n" + "Make sure that you have captured 6 members." 
+					+ "\n" + "Make sure that you have selected a group admin.";
+		alert(error);
+		return;
+	}  
+try{	
 var jsonString = JSON.stringify(jsonList); 
  
 xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
+	
+	
+	
+console.log(this.responseText);
+
   if (this.readyState == 4 && this.status == 200) {
-   /*  myObj = JSON.parse(this.responseText);
-    for (x in myObj) {
-      txt += myObj[x].name + "<br>";
-    } */
-    //alert( this.responseText);
-  //TODO Success
-  }else
-  {
-   //TODO Failure 
-  }
+	console.log('this.readyState == 4 && this.status == 200');
+	ToggleShowPreloader(false);
+	//TODO Success
+	if(!this.responseText)
+	{
+		return;
+	}
+	if(this.responseText == 1)
+	{	  
+		console.log(this.responseText);
+		$("#btnOpenModalSubmitSuccess").click();
+		ReSetForm();
+		
+	}
+	else
+	{		 
+	   console.log(this.responseText);
+	   $("#btnOpenModalSubmitFailure").click();
+	}
+  } 
 };
 xmlhttp.open("POST", "sirocregister.php", true);
 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send("x=" + jsonString);
 
+   ToggleShowPreloader(true);
+
+xmlhttp.send("x=" + jsonString);
+}catch(exc)
+{
+  console.log(exc);
+  $("#btnOpenModalSubmitFailure").click();
+}
+}
+
+function ChangeGroupAdmin(id)
+{
+ if (id) {
+  
+ for (let member in jsonList) { 
+     if (jsonList[member].id == id) { 
+		 jsonList[member].isadmin = "1";         
+     }
+	 else
+	 {		 
+		 jsonList[member].isadmin = "0";   
+	 }
+    }
+	RefreshMemberList();	
+   }
+}
+
+function ValidateBeforeSubmit(){
+	
+    var memberCount = 0;
+	var isAdminSelected = false;
+    for (let member in jsonList) 
+	{   
+		 
+      if(jsonList[member].isadmin == "1")
+      {
+		  console.log("Group_Name : " + $("#Group_Name").val());
+		jsonList[member].groupname = $("#Group_Name").val();  
+      	isAdminSelected = true;			
+      }
+	  memberCount++;
+	}		 
+	
+	return memberCount == 6 && isAdminSelected && ("#Group_Name").val().length > 4;  
+}
+
+function ReSetForm(){
+ theList = '[{"id":-1, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-2, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-3, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-4, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-5, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
+			  ',{"id":-6, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}]';
+ jsonList = $.parseJSON(theList);
+ 
+    $("#memberDetailsDisplay").empty();
+
+    $("#login-form #modal_id").val('');
+    $("#login-form #modal_name").val('');
+    $("#login-form #modal_cell").val('');
+    $("#login-form #modal_email").val('');
+    $("#login-form #modal_beer").val('');
+    $("#login-form #modal_extra").val('');
+}
+
+function ToggleShowPreloader(showPreloader){
+	
+console.log('ToggleShowPreloader' + showPreloader);
+
+if(showPreloader == true)
+{	
+   console.log('showPreloader == true');
+   $('#preloader').show();
+   $('#status').show(); 
+}
+else
+{
+   console.log('showPreloader == false');
+   $('#preloader').hide();
+   $('#status').hide(); 
+}
+	
 }
