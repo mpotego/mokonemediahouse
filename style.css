@@ -642,6 +642,11 @@ img{
   width: 100%;
 }
 
+.title-area img {
+  height: 220px;
+  width: 280px;
+}
+
 .title-area .title {	
 	font-size: 35px;
 	font-weight: 700;
