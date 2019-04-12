@@ -421,12 +421,12 @@
                    <h4>Terms and conditions for payments </h4>
                    <p> 
 
-Payment confirmation required before the last day of each month. Orders for all six members in a group must be submitted and only then will groups be issued with a reference numbers to effect payment. All details will be communicated with each group admin via SMS. </br></br>
-Important Note:</br></br>
-Please use the issued reference as payment reference. </br></br>
-
-Gig guide and special announcements available on Mokone Media House (Pty) Ltd Social Media Platforms. 
-</p>
+					Payment confirmation required before the last day of each month. Orders for all six members in a group must be submitted and only then will groups be issued with a reference numbers to effect payment. All details will be communicated with each group admin via SMS. </br></br>
+					Important Note:</br></br>
+					Please use the issued reference as payment reference. </br></br>
+					
+					Gig guide and special announcements available on Mokone Media House (Pty) Ltd Social Media Platforms. 
+					</p>
                    
                    <div class="footer-right contact-social">
                      
@@ -444,18 +444,26 @@ Gig guide and special announcements available on Mokone Media House (Pty) Ltd So
 			   
 			  <div class="title-area">
                 <div class="form-group">
-					  <input id="Group_Name" type="text" placeholder="Group Name" class="form-control">           
-				</div>	            
+					<input id="Group_Name" type="text" placeholder="Group Name" class="form-control">  
+				   
+				</div>       
               </div>
-			  
+			  					
+				<div class="errorSummaryP">
+						<p id="errorSummary" class="errorSummaryP"></p> 
+				</div>    
+			    <div id="memberDetailsDisplay">
+			 
+				</div>  
+				
+				<div id="selectAdminErrorDiv">
+					<p class="selectAdminError">Please select the admin for the group then submit.</p>
+				</div>
+				
 			    <div class="header-login">
 				 <button id="btnOpenModal"  class="login modal-form modalButton" data-target="#login-form" data-toggle="modal" class="btn signin-btn" type="button">Add Member</button>
 			   </div>  
 			   
-			    <div id="memberDetailsDisplay">
-			 
-				</div> 
-				
 				<div class="header-login">
 				 <button id="btnSubmitForm" onclick="SubmitApplication()" class="login modal-form modalButton" type="button">Submit Details</button>
 			    </div> 

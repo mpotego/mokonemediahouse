@@ -12,15 +12,12 @@ var theList = '[{"id":-1, "name":"",  "cell":"", "email":"", "beer":"", "extra":
 			  ',{"id":-4, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
 			  ',{"id":-5, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
 			  ',{"id":-6, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}]';
- /* '[{"id":1, "name":"Potego Malatji",  "cell":"0766104380", "email":"mpotego@yahoo.com", "beer":"Heinecken" ,    "extra":0}' +     
+/*  var theList = '[{"id":1, "name":"Potego Malatji",  "cell":"0766104380", "email":"mpotego@yahoo.com", "beer":"Heinecken" ,    "extra":0}' +     
 			 ',{"id":2, "name":"Ricardo Maake",   "cell":"0766104380", "email":"Ricardo@yahoo.com", "beer":"Castle lite",   "extra":0}' +     
 			 ',{"id":3, "name":"Leeroy Maila",    "cell":"0766104380", "email":"Leeroy@yahoo.com",  "beer":" Hunters Dry",  "extra":0}' +      
 			 ',{"id":4, "name":"Modjadji Mashele","cell":"0766104380", "email":"Leeroy@yahoo.com",  "beer":"Flying Fish",   "extra":0}' +  
 			 ',{"id":5, "name":"Katlego Makham",  "cell":"0766104380", "email":"Katlego@yahoo.com", "beer":"Amstel",        "extra":0}' +         
-			 ',{"id":6, "name":"Bobhle Mailula",  "cell":"0766104380", "email":"Bobhle@yahoo.com",  "beer":"Castle Larger", "extra":0}]';  
-
-
-*/ 
+			 ',{"id":6, "name":"Bobhle Mailula",  "cell":"0766104380", "email":"Bobhle@yahoo.com",  "beer":"Castle Larger", "extra":0}]';   */
 
 var jsonList = $.parseJSON(theList);
 
@@ -42,11 +39,12 @@ function RefreshMemberList() {
     $("#login-form #modal_name").val('');
     $("#login-form #modal_cell").val('');
     $("#login-form #modal_email").val('');
-    $("#login-form #modal_beer").val('');
+    $("#login-form #modal_beer").val('Select Beer');
     $("#login-form #modal_extra").val('');
 
     var memberCount = 0;
 	var isAdminSelected = false;
+	
     for (let member in jsonList) {
         var id = jsonList[member].id;
         var name = jsonList[member].name;
@@ -55,7 +53,17 @@ function RefreshMemberList() {
         var beer = jsonList[member].beer;
         var extra = jsonList[member].extra;
 		var isadmin = jsonList[member].isadmin;
+		
         if (id > 0) {
+			
+			if(extra)
+			{
+				extra = extra;
+			}
+			else
+			{
+				extra = 0;
+			}
 
             var lineItem = '<div class="blog-news-title">' +
                 '<p><span >' + id + '</span>. <span>' + name + '</span> , <span>' + cell + '</span> , <span>' + email + '</span> </p>' +
@@ -63,11 +71,11 @@ function RefreshMemberList() {
 			if(isadmin == "1")
 			{
 				isAdminSelected = isadmin;
-				lineItem += '<input type="checkbox"  onclick="ChangeGroupAdmin(' + id + ')" checked> Group Admin </input>'
+				lineItem += '<input type="checkbox"  onclick="ChangeGroupAdmin(' + id + ')" class="adminCheckBox" checked> Group Admin </input>'
 			}
 			else
 			{
-				lineItem += '<input type="checkbox"  onclick="ChangeGroupAdmin(' + id + ')"> Group Admin </input>'
+				lineItem += '<input type="checkbox"  onclick="ChangeGroupAdmin(' + id + ')" class="adminCheckBox"> Group Admin </input>'
 			}
 			lineItem += '<a onclick=OpenMemberDetails(' + id + ') >Edit</a> <span> | </span> <a onclick=RemoveMember(' + id + ') >Remove</a></p>' +
                 '</div>';
@@ -78,14 +86,36 @@ function RefreshMemberList() {
 
 
     }
+	
+	if(memberCount == 6 && !isAdminSelected)
+	{ 
+		$("#memberDetailsDisplay input:checkbox").addClass("adminCheckBoxError");
+		$("#selectAdminErrorDiv").show();
+	}	
+	else
+	{ 
+		$("#memberDetailsDisplay input:checkbox").removeClass("adminCheckBoxError");
+		$("#selectAdminErrorDiv").hide();
+	}			
+	
+	if(memberCount == 6)
+	{
+		$("#btnOpenModal").hide();
+	}
+	else
+	{		
+        $("#btnOpenModal").show();
+	}
 
-    if (memberCount == 6 && isAdminSelected && $("#Group_Name").val().length > 4) {
+    if (memberCount == 6 && isAdminSelected) 
+	{
          $("#btnSubmitForm").show();
-         $("#btnOpenModal").hide();
-     } else {
+       
+    }
+	else 
+	{
          $("#btnSubmitForm").hide();
-         $("#btnOpenModal").show();
-     }  
+    }  
 }
 
 function OpenMemberDetails(id) {
@@ -215,7 +245,7 @@ function ValidateMemberDetails() {
     var cellValidation = /^\d{10}$/;
     var isCellValid = cellValidation.test(cell.val()) && cell.val().startsWith("0");
     if (isCellValid == false) {
-        console.log("cell IS Not VAlid!");
+        console.log("cell Is Not Valid!");
         cell.addClass("modalInvalidInput");
         valid = false;
     } else {
@@ -269,12 +299,7 @@ function SubmitApplication() {
  
    console.log('SubmitApplication');
 
-	  if(ValidateBeforeSubmit() == false){
-		var error = "Error."
-					+ "\n" + "Make sure that your group name must be atleast 4 characters." 
-					+ "\n" + "Make sure that you have captured 6 members." 
-					+ "\n" + "Make sure that you have selected a group admin.";
-		alert(error);
+	if(ValidateBeforeSubmit() == false){
 		return;
 	}  
 try{	
@@ -340,22 +365,47 @@ function ChangeGroupAdmin(id)
 }
 
 function ValidateBeforeSubmit(){
+		
+	$("#errorSummary").text("");
 	
+	var validatioErrors = ""; 
     var memberCount = 0;
 	var isAdminSelected = false;
+    var groupName = $("#Group_Name").val();
+	
     for (let member in jsonList) 
 	{   
 		 
       if(jsonList[member].isadmin == "1")
       {
-		  console.log("Group_Name : " + $("#Group_Name").val());
-		jsonList[member].groupname = $("#Group_Name").val();  
+		  console.log("Group_Name : " + groupName);
+		jsonList[member].groupname = groupName;  
       	isAdminSelected = true;			
       }
-	  memberCount++;
+	
+	memberCount++;
+	
 	}		 
 	
-	return memberCount == 6 && isAdminSelected && ("#Group_Name").val().length > 4;  
+	if(memberCount != 6)
+	{
+		validatioErrors += "Make sure that you have captured 6 members.\n" 
+	}
+	
+	if(!isAdminSelected)
+	{
+		validatioErrors += "Make sure that you have selected a group admin.\n" 
+	}
+	
+	if(groupName.length <= 4)
+	{
+		validatioErrors += "Make sure that your have captured group name. Group name must be at least 4 characters.\n";
+	}
+	
+	console.log('validatioErrors : ' + validatioErrors);
+	$("#errorSummary").text(validatioErrors);
+		
+	return   validatioErrors.length == 0;  
 }
 
 function ReSetForm(){
@@ -368,12 +418,13 @@ function ReSetForm(){
  jsonList = $.parseJSON(theList);
  
     $("#memberDetailsDisplay").empty();
-
+	$("#Group_Name").val('');
+	
     $("#login-form #modal_id").val('');
     $("#login-form #modal_name").val('');
     $("#login-form #modal_cell").val('');
     $("#login-form #modal_email").val('');
-    $("#login-form #modal_beer").val('');
+    $("#login-form #modal_beer").val('Select Beer');
     $("#login-form #modal_extra").val('');
 }
 

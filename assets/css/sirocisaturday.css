@@ -2,7 +2,21 @@
   border-color:red;
 }
 
-
 .modalButton{ 
   background-color:#2f2f2f
+}
+
+.selectAdminError { 
+	color:red;
+	text-align:center;
+}
+
+.errorSummaryP {   
+	color:red;
+	text-align:center;
+}
+
+.adminCheckBoxError {   
+	outline:2px solid red;
+    outline-offset: -2px;
 }
