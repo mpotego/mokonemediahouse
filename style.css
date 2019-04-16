@@ -1577,13 +1577,45 @@ img{
 
 #single-page-header{
   background-attachment: fixed !important;
-  background-image: url("assets/images/slider-5.jpg");
+ /*  background-image: url("banners/assets/images/aboutus.jpg"); */
   background-repeat: repeat;
-  background-size: cover;
+  background-size: cover; 
   color: #ffffff;
   display: inline;
   float: left;    
   width: 100%;
+} 
+
+.aboutus-banner{	
+  background-image: url("assets/images/banners/aboutus.jpg");
+}
+
+.sevice-banner{	
+  background-image: url("assets/images/banners/sevice.jpg");
+}
+
+.meetse-banner{	
+  background-image: url("assets/images/banners/meetse.jpg");
+}
+
+.maxiconnect-banner{	
+  background-image: url("assets/images/banners/maxiconnect.jpg");
+}
+
+.partnersandassociates-banner{	
+  background-image: url("assets/images/banners/partnersandassociates.jpg");
+}
+
+.careers-banner{	
+  background-image: url("assets/images/banners/careers.jpg");    
+}
+
+.contact-banner{	
+  background-image: url("assets/images/banners/contact.png");
+}
+
+.sirocisaturday-banner{	
+  background-image: url("assets/images/banners/sirocisaturday.png");
 }
 
 .overlay{
