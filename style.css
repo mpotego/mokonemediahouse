@@ -1583,7 +1583,6 @@ img{
   /* float: left; */
   /* width: 100%; */
   background-repeat: repeat;
-  background-size: 100% 100%;
   color: #ffffff;
   display: inline;
   float: left; 
@@ -1592,39 +1591,47 @@ img{
 
 .aboutus-banner{	
   background-image: url("assets/images/banners/aboutus.jpg");
+  background-size: 100% 350px;
 }
 
 .sevice-banner{	
   background-image: url("assets/images/banners/sevice.jpg");
+  background-size: 100% 380px;
 }
 
 .meetse-banner{	
   background-image: url("assets/images/banners/meetse.jpg");
+  background-size: 100% 370px;
 }
 
 .maxiconnect-banner{	
   background-image: url("assets/images/banners/maxiconnect.jpg");
+  background-size: 100% 380px;
 }
 
 .partnersandassociates-banner{	
   background-image: url("assets/images/banners/partnersandassociates.jpg");
+  background-size: 100% 380px;
 }
 
 .careers-banner{	
-  background-image: url("assets/images/banners/careers.jpg");    
+  background-image: url("assets/images/banners/careers.jpg");
+  background-size: 100% 330px;    
 }
 
 .contact-banner{	
   background-image: url("assets/images/banners/contact.png");
+  background-size: 100% 420px;
 }
 
 .sirocisaturday-banner{	
   background-image: url("assets/images/banners/sirocisaturday.png");
+  background-size: 100% 320px;
 }
 
 .overlay{
   background-color: rgba(0,0,0,0.6); 
-  padding: 120px 0;
+  padding: 90px 0;
   float: left;
   width: 100%;
 }
