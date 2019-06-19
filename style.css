@@ -1604,6 +1604,11 @@ img{
   background-size: 100% 370px;
 }
 
+.clothing-banner{	
+  background-image: url("assets/images/banners/clothing.jpeg");
+  background-size: 100% 370px;
+}
+
 .maxiconnect-banner{	
   background-image: url("assets/images/banners/maxiconnect.jpg");
   background-size: 100% 380px;
