@@ -55,8 +55,8 @@ $email_message .= "</table>";
 $email_message .= '</body></html>';
 $email_message = str_replace("_The_Group_Name_Placeholder_", $groupName, $email_message);
  
- $email_to = 'request@mokonemediahouse.com';
-$email_subject = 'siRock iSaturday Registration';
+ $email_to = 'Bookings@mokonemediahouse.com';
+$email_subject = 'Website siRock iSaturday Registration';
 
 // Always set content-type when sending HTML email
 $headers = "MIME-Version: 1.0" . "\r\n";

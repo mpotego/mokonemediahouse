@@ -9,8 +9,8 @@ if (isset($_POST['lastName']) && strlen($_POST['lastName']) > 0) {
 	$isspam = 1;     
 }
     // EDIT THE 2 LINES BELOW AS REQUIRED
-    $email_to = "Info@mokonemediahouse.com";
-    $email_subject = "Website Contact Us Form Inquiry";
+    $email_to = "Bookings@mokonemediahouse.com";
+    $email_subject = "Website Contact Maxi Connect Inquiry";
  
     function died($error) {
         // your error code can go here
@@ -25,6 +25,7 @@ if (isset($_POST['lastName']) && strlen($_POST['lastName']) > 0) {
     // validation expected data exists
     if(!isset($_POST['name']) ||
         !isset($_POST['email']) ||
+		!isset($_POST['phoneNumber']) ||
         !isset($_POST['message'])) {
         died('We are sorry, but there appears to be a problem with the form you submitted.');   
 		/* return; */
@@ -32,7 +33,8 @@ if (isset($_POST['lastName']) && strlen($_POST['lastName']) > 0) {
  
      
  
-    $first_name = $_POST['name']; // required 
+    $first_name = $_POST['name']; // required 	
+    $phone_number = $_POST['phoneNumber']; // required 
     $email_from = $_POST['email']; // required 
     $comments = $_POST['message']; // required
  
@@ -48,7 +50,10 @@ if (isset($_POST['lastName']) && strlen($_POST['lastName']) > 0) {
   if(!preg_match($string_exp,$first_name)) {
     $error_message .= 'The First Name you entered does not appear to be valid.<br />';
   }
-   
+   $string_exp_1 = "/^\d{10}$/";
+  if(!preg_match($string_exp_1,$phone_number)) {
+    $error_message .= 'The phone number you entered does not appear to be valid.<br />';
+  } 
   if(strlen($comments) < 2) {
     $error_message .= 'The Comments you entered do not appear to be valid.<br />';
   }
@@ -107,6 +112,7 @@ if($isspam == 1){
  /* Sending the email */     
  
     $email_message .= "First Name: ".clean_string($first_name)."\n"; 
+    $email_message .= "Phone Number: ".clean_string($phone_number)."\n"; 
     $email_message .= "Email: ".clean_string($email_from)."\n"; 
     $email_message .= "Comments: ".clean_string($comments)."\n";
  
@@ -116,9 +122,9 @@ $headers = 'From: '.$email_from."\r\n".
 'X-Mailer: PHP/' . phpversion(); 
  
  if (mail($email_to, $email_subject, $email_message, $headers)) {
-    header('location: contactsuccess.html');
+    header('location: maxiconnectsuccess.html');
 } else {
-    header('location: contacterror.html');
+    header('location: maxiconnecterror.html');
 }   
 /*End of Sending the email */
  
