@@ -86,9 +86,11 @@
               <input id="modal_id" type="number" class="form-control" readonly="true" style="display:none;">
             </div>	
 			 <div class="form-group">
+			 <div class="modalInvalidSelect" id="modal_bottle_frame">
 			 <select class="form-control" id="modal_bottle">
 				<option>Select Bottle Size</option>	 							 
 			 </select>
+			 </div>
             </div>
 			 <div class="form-group">
               <input id="modal_quantity" type="number" min="0" placeholder="Number of bottles" class="form-control">
@@ -103,6 +105,39 @@
   </div>
   <!-- End login modal window -->
   
+  <!-- Start success modal window -->
+  <button id="btnOpenModalSubmitSuccess"  class="login modal-form" data-target="#submit-success" data-toggle="modal" class="btn signin-btn">Add</button>
+  <div aria-hidden="false" role="dialog" tabindex="-1" id="submit-success" class="modal leread-modal fade in">
+    <div class="modal-dialog"> 
+      <div id="login-content" class="modal-content">
+        <div class="modal-header">
+          <button id="btnCloseModalSubmitSuccess" aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title"><i class="fa fa-user-alt"></i>Success</h4>
+        </div>
+        <div class="modal-body"> 	 
+              <h4 class="form-control"> Thank you  - We have recieved the details and will be in contact with you shortly. </h4> 
+        </div> 
+      </div> 
+	 </div>
+  </div>
+  <!-- End success modal window -->
+  
+ <!-- Start failure modal window -->
+  <button id="btnOpenModalSubmitFailure"  class="login modal-form" data-target="#submit-failure" data-toggle="modal" class="btn signin-btn">Add</button>
+  <div aria-hidden="false" role="dialog" tabindex="-1" id="submit-failure" class="modal leread-modal fade in">
+    <div class="modal-dialog"> 
+      <div id="login-content" class="modal-content">
+        <div class="modal-header">
+          <button id="btnCloseModalSubmitFailure" aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title"><i class="fa fa-user-alt"></i>Error</h4>
+        </div>
+        <div class="modal-body"> 		   
+              <h4 class="form-control">Error - Unfortunately your details did not send. Please try again later</h2>             	 
+        </div> 
+      </div> 
+	 </div>
+  </div>
+  <!-- End failure modal window -->
 
   <!-- BEGIN MENU -->
   <section id="menu-area">      
@@ -293,7 +328,7 @@ A brand of purified water, packaged as both portable bottled water and dispensar
                         <input id="cell" type="text" class="form-control" placeholder="Cell">
                       </div>
 					  <div class="form-group">                        
-                        <textarea placeholder="Comment" rows="3" class="form-control"></textarea>
+                        <textarea id="comment" placeholder="Comment" rows="3" class="form-control"></textarea>
                       </div>
 					 <p>Click 'add order details' button</p>
 					 

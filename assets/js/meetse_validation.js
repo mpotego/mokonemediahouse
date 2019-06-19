@@ -6,14 +6,14 @@ All I am gonna say is that code can always be better, I think.
 .....
 */
 
-var theList = '[{"id":-1, "bottletype":"",  "quantity":"", "cell":"", "email":"", "name":""}' +
-			  ',{"id":-2, "bottletype":"",  "quantity":"", "cell":"", "email":"", "name":""}' +
-			  ',{"id":-3, "bottletype":"",  "quantity":"", "cell":"", "email":"", "name":""}]';
+var theList = '[{"id":-1, "bottletype":"",  "quantity":""}' +
+			  ',{"id":-2, "bottletype":"",  "quantity":""}' +
+			  ',{"id":-3, "bottletype":"",  "quantity":""}]';
 			  
-/* var theList = '[{"id":1, "bottletype":"500 ml",  "quantity":"10", "cell":"0766104380", "email":"potego@yahoo.com", "name":"Potego Malatji"}' +
-			  ',{"id":2, "bottletype":"1 litre",  "quantity":"12", "cell":"0766104380", "email":"potego@yahoo.com", "name":"Potego Malatji"}' +
-			  ',{"id":3, "bottletype":"5 litres",  "quantity":"50", "cell":"0766104380", "email":"potego@yahoo.com", "name":"Potego Malatji"}]'; 
- */
+var theDefaultList = '[{"id":-1, "bottletype":"",  "quantity":""}' +
+					 ',{"id":-2, "bottletype":"",  "quantity":""}' +
+					 ',{"id":-3, "bottletype":"",  "quantity":""}]';
+
 var jsonList = $.parseJSON(theList);
 
 var bottleSizeFirstOption = "Select Bottle Size";
@@ -211,12 +211,12 @@ function ValidateMemberDetails() {
     var valid = true;	
 
     if (bottle.val() == bottleSizeFirstOption) {
-
+	
         console.log("Beer Is Not Valid!");
-        bottle.addClass("modalInvalidInput");
+        $("#meetse-order-form #modal_bottle_frame").addClass("modalInvalidSelect");
         valid = false;
     } else {
-        bottle.removeClass("modalInvalidInput");
+        $("#meetse-order-form #modal_bottle_frame").removeClass("modalInvalidSelect");
     }
 
     if (quantity.val() < 1) {
@@ -280,7 +280,6 @@ function LoadBottleSizeOptions() {
 	
 }
 
-
 function SubmitApplication() {
  
    console.log('SubmitApplication');
@@ -289,7 +288,17 @@ function SubmitApplication() {
 		return;
 	}  
 try{	
-var jsonString = JSON.stringify(jsonList); 
+
+var name = $("#name").val();
+var cell = $("#cell").val();
+var email = $("#email").val();
+var comment = $("#comment").val();
+ 
+var postParameter = {"name":name, "email":email, "cell":cell,"comment":comment,"bottletypes":jsonList};
+
+var jsonString = JSON.stringify(postParameter); 
+ 
+console.log(jsonString);
  
 xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
@@ -301,11 +310,9 @@ console.log(this.responseText);
   if (this.readyState == 4 && this.status == 200) {
 	console.log('this.readyState == 4 && this.status == 200');
 	ToggleShowPreloader(false);
-	//TODO Success
-	if(!this.responseText)
-	{
-		return;
-	}
+	//TODO Success 
+	console.log('this.responseText : ' + this.responseText);
+	
 	if(this.responseText == 1)
 	{	  
 		console.log(this.responseText);
@@ -320,7 +327,7 @@ console.log(this.responseText);
 	}
   } 
 };
-xmlhttp.open("POST", "sirocregister.php", true);
+xmlhttp.open("POST", "orderMeetse.php", true);
 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
    ToggleShowPreloader(true);
@@ -332,23 +339,7 @@ xmlhttp.send("x=" + jsonString);
   $("#btnOpenModalSubmitFailure").click();
 }
 }
-
-function ChangeGroupAdmin(id)
-{
- if (id) {
-  
- for (let member in jsonList) { 
-     if (jsonList[member].id == id) { 
-		 jsonList[member].isadmin = "1";         
-     }
-	 else
-	 {		 
-		 jsonList[member].isadmin = "0";   
-	 }
-    }
-	RefreshItemList();	
-   }
-}
+ 
 
 function ValidateBeforeSubmit(){
 		
@@ -387,13 +378,8 @@ function ValidateBeforeSubmit(){
 }
 
 function ReSetForm(){
- theList = '[{"id":-1, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
-			  ',{"id":-2, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
-			  ',{"id":-3, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
-			  ',{"id":-4, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
-			  ',{"id":-5, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}' +
-			  ',{"id":-6, "name":"",  "cell":"", "email":"", "beer":"", "extra":0, "isadmin":"0", "groupname":""}]';
- jsonList = $.parseJSON(theList);
+ theList = theDefaultList;
+ jsonList = $.parseJSON(theDefaultList);
  
     $("#meetseOrderListDisplay").empty();
 	
