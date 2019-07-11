@@ -12,7 +12,7 @@ $inputArray = json_decode($inputJSON , true);
 $adminEmail = '';
 $groupName =  '';
 
-$email_message = "<body><html>";
+$email_message = "<html><body>";
 $email_message .= "<table border='1' style='border-collapse: collapse;'>"; 
 $email_message .= "<tr>";
 $email_message .= "<th colspan=4>Group Name: _The_Group_Name_Placeholder_ </td>" ;
