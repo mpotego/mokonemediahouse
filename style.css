@@ -1723,12 +1723,35 @@ body {
 }
 
 .maxi-header-banner {
-    content: url("assets/images/HeaderBanners/maxi-connect.png");
+    background-image: url("assets/images/HeaderBanners/maxi-connect.png");
+    background-size: 100% 100%;
 }
 
 .meetse-header-banner {
-    content: url("assets/images/HeaderBanners/meetse.jpg");
+    background-image: url("assets/images/HeaderBanners/meetse.jpg");
+    background-size: 100% 100%;
 }
+
+
+.homeSlider1{
+    content:url("assets/images/homesliders/MokoneMediaHouse-s-1-min.png"); 
+} 
+
+.homeSlider2{
+    content:url("assets/images/homesliders/MokoneMediaHouse-s-2-min.png");
+} 
+
+.homeSlider3{
+    content:url("assets/images/homesliders/MokoneMediaHouse-s-3-min.png");
+} 
+
+.homeSlider4{
+    content:url("assets/images/homesliders/MokoneMediaHouse-s-4-min.png");
+} 
+
+.homeSlider6{
+    content:url("assets/images/homesliders/MokoneMediaHouse-s-6-min.png");
+} 
 
 .overlay {
     background-color: rgba(0, 0, 0, 0.6);
@@ -2560,13 +2583,38 @@ body {
     }
 }
 
+/*Mobile Screen */
+/*TODO try and use background-image on the homesliders */
 @media(max-width:767px) {
     .maxi-header-banner {
-        content: url("assets/images/HeaderBanners/maxi-connect-mobi.png");
+        background-image: url("assets/images/HeaderBanners/maxi-connect-mobi.png");
+        Background-size: 100% 100%;
     }
     .meetse-header-banner {
-        content: url("assets/images/HeaderBanners/meetse-mobi.png");
+        background-image: url("assets/images/HeaderBanners/meetse-mobi.png");
+        Background-size: 100% 100%;
     }
+
+    .homeSlider1{
+        content:url("assets/images/homesliders/MokoneMediaHouse-s-1-mobi-min.png");
+    } 
+
+    .homeSlider2{
+        content:url("assets/images/homesliders/MokoneMediaHouse-s-2-mobi-min.png");
+    } 
+
+    .homeSlider3{
+        content:url("assets/images/homesliders/MokoneMediaHouse-s-3-mobi-min.png");
+    } 
+
+    .homeSlider4{
+        content:url("assets/images/homesliders/MokoneMediaHouse-s-4-mobi-min.png");
+    } 
+
+    .homeSlider6{
+        content:url("assets/images/homesliders/MokoneMediaHouse-s-6-mobi-min.png");
+    } 
+
     .our-skill {
         display: none;
     }
@@ -2727,6 +2775,7 @@ body {
     }
     .single-slide {
         height: 200px;
+        background-color: #383838;
     }
     .single-slide img {
         height: 100%;
